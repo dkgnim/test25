@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Config
+clusters:
+- cluster:
+    api-version: v1
+    certificate-authority: /etc/kubernetes/ssl/kube-ca.pem
+    server: "https://127.0.0.1:6443"
+  name: "local"
+contexts:
+- context:
+    cluster: "local"
+    user: "kube-apiserver-proxy-client-local"
+  name: "local"
+current-context: "local"
+users:
+- name: "kube-apiserver-proxy-client-local"
+  user:
+    client-certificate: /etc/kubernetes/ssl/kube-apiserver-proxy-client.pem
+    client-key: /etc/kubernetes/ssl/kube-apiserver-proxy-client-key.pem
